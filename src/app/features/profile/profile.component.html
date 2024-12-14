@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-header">
+    <ion-avatar class="avatar">
+      <img
+        [src]="user.photo || 'assets/default-avatar.png'"
+        alt="Foto de perfil"
+      />
+    </ion-avatar>
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.email }}</p>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estadísticas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" class="stat">
+            <h3>{{ stats.projects }}</h3>
+            <p>Proyectos</p>
+          </ion-col>
+          <ion-col size="6" class="stat">
+            <h3>{{ stats.completedTasks }}</h3>
+            <p>Tareas Completadas</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item button (click)="editProfile()" (keydown)="(null)">
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+      Editar Perfil
+    </ion-item>
+    <ion-item button (click)="logout()" (keydown)="(null)">
+      <ion-icon slot="start" name="log-out-outline" color="danger"></ion-icon>
+      Cerrar Sesión
+    </ion-item>
+  </ion-list>
+</ion-content>

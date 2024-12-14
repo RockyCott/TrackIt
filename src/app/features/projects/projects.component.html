@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Proyectos </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Proyectos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Project Cards -->
+  @for (project of projects; track $index) {
+  <ion-card>
+    <!-- Card Header -->
+    <ion-card-header>
+      <ion-card-title>{{ project.title | titlecase }}</ion-card-title>
+      <ion-card-subtitle>{{ project.subtitle }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <!-- Card Content -->
+    <ion-card-content>
+      <!-- Project Description -->
+      {{ project.description || "No registrado" | ellipsis }}
+      <!-- Info Icons -->
+      <ion-row>
+        <ion-col size="5">
+          <ion-icon class="mr-4" name="calendar-outline"></ion-icon>
+          <span>{{
+            (project.startDate | date : "dd/MM/yyyy") || "Error"
+          }}</span>
+        </ion-col>
+        <ion-col size="5">
+          <ion-icon class="mr-4" name="calendar-outline"></ion-icon>
+          <span>{{ (project.endDate | date : "dd/MM/yyyy") || 'En progreso' }}</span>
+        </ion-col>
+        <ion-col size="2" class="primary-color">
+          <ion-icon class="mr-4" name="people-outline"></ion-icon>
+          <span>{{ project.memberCount || 0 }}</span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  }
+</ion-content>
