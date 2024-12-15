@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   IonAvatar,
   IonCard,
@@ -10,16 +10,18 @@ import {
   IonGrid,
   IonHeader,
   IonIcon,
-  IonImg,
   IonItem,
+  IonLabel,
   IonList,
   IonRow,
   IonTitle,
+  IonToggle,
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { createOutline, logOutOutline } from 'ionicons/icons';
+import { createOutline, logOutOutline, moonOutline } from 'ionicons/icons';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { DarkModeService } from 'src/app/core/services/darkMode/dark-mode.service';
 
 @Component({
   selector: 'app-profile',
@@ -42,10 +44,14 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
     IonList,
     IonItem,
     IonAvatar,
-    IonImg,
+    IonLabel,
+    IonToggle,
   ],
 })
 export class ProfileComponent {
+  private authService: AuthService = inject(AuthService);
+  private darkModeService: DarkModeService = inject(DarkModeService);
+
   user = {
     name: 'Ximena Doe',
     email: 'ximena.doe@example.com',
@@ -58,17 +64,23 @@ export class ProfileComponent {
     completedTasks: 34,
   };
 
-  private authService: AuthService = inject(AuthService);
+  isDarkMode: boolean;
 
   constructor() {
-    addIcons({ createOutline, logOutOutline });
+    addIcons({createOutline,moonOutline,logOutOutline});
+    this.isDarkMode = this.darkModeService.darkMode;
   }
 
-  editProfile() {
+  editProfile(): void {
     console.log('Editar perfil (pendiente implementar)');
   }
 
-  logout() {
+  toggleDarkMode(event: any): void {
+    this.isDarkMode = event.detail.checked;
+    this.darkModeService.darkMode = this.isDarkMode;
+  }
+
+  logout(): void {
     this.authService.logout();
   }
 }

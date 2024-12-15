@@ -1,6 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Mi Perfil</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="color-light">Mi Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -40,6 +40,12 @@
     <ion-item button (click)="editProfile()" (keydown)="(null)">
       <ion-icon slot="start" name="create-outline"></ion-icon>
       Editar Perfil
+    </ion-item>
+     <!-- Modo Oscuro -->
+     <ion-item>
+      <ion-icon slot="start" name="moon-outline"></ion-icon>
+      <ion-label>Dark Mode</ion-label>
+      <ion-toggle slot="end" [checked]="isDarkMode" (ionChange)="toggleDarkMode($event)"></ion-toggle>
     </ion-item>
     <ion-item button (click)="logout()" (keydown)="(null)">
       <ion-icon slot="start" name="log-out-outline" color="danger"></ion-icon>

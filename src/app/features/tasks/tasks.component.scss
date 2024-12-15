@@ -1,0 +1,42 @@
+.filter-container {
+  display: flex;
+  gap: 4px;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+ion-chip {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+ion-badge {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.task-card {
+  --ion-card-border-radius: 12px;
+  --ion-card-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+ion-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+ion-item {
+  --padding-start: 0;
+  --padding-end: 10px;
+}
