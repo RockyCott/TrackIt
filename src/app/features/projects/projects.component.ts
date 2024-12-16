@@ -1,6 +1,7 @@
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import {
   IonButton,
   IonButtons,
@@ -42,35 +43,43 @@ import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
     IonCol,
     DatePipe,
     TitleCasePipe,
+    RouterLink,
   ],
 })
 export class ProjectsComponent {
   // signal
   projects = [
     {
+      id: 1,
       title: 'Construcción de un puente',
       subtitle: 'Proyecto de infraestructura',
-      description: 'Construcción de un puente en la ciudad de Bucaramanga, Colombia',
+      description:
+        'Construcción de un puente en la ciudad de Bucaramanga, Colombia',
       startDate: '2021-10-01',
       endDate: '2021-12-01',
       memberCount: 5,
     },
     {
+      id: 2,
       title: 'Construcción de un edificio',
       subtitle: 'Proyecto de infraestructura',
-      description: 'Construcción de un edificio en la ciudad de Bucaramanga, Colombia',
+      description:
+        'Construcción de un edificio en la ciudad de Bucaramanga, Colombia',
       startDate: '2021-10-01',
       memberCount: 3,
     },
     {
+      id: 3,
       title: 'Construcción de una casa',
       subtitle: 'Proyecto de infraestructura',
-      description: 'Construcción de una casa en la ciudad de Bucaramanga, Colombia',
+      description:
+        'Construcción de una casa en la ciudad de Bucaramanga, Colombia',
       startDate: '2021-10-01',
       endDate: '2021-12-01',
       memberCount: 2,
     },
     {
+      id: 4,
       title: 'Gestión de residuos',
       subtitle: 'Proyecto de medio ambiente',
       description:
@@ -78,27 +87,34 @@ export class ProjectsComponent {
       memberCount: 4,
     },
     {
+      id: 5,
       title: 'Construcción de un puente',
       subtitle: 'Proyecto de infraestructura',
-      description: 'Construcción de un puente en la ciudad de Bucaramanga, Colombia',
+      description:
+        'Construcción de un puente en la ciudad de Bucaramanga, Colombia',
       startDate: '2021-10-01',
       memberCount: 5,
     },
     {
+      id: 6,
       title: 'Construcción de un edificio',
       subtitle: 'Proyecto de infraestructura',
-      description: 'Construcción de un edificio en la ciudad de Bucaramanga, Colombia',
+      description:
+        'Construcción de un edificio en la ciudad de Bucaramanga, Colombia',
       startDate: '2021-10-01',
       memberCount: 3,
     },
     {
+      id: 7,
       title: 'Construcción de una casa',
       subtitle: 'Proyecto de infraestructura',
-      description: 'Construcción de una casa en la ciudad de Bucaramanga, Colombia',
+      description:
+        'Construcción de una casa en la ciudad de Bucaramanga, Colombia',
       startDate: '2021-10-01',
       memberCount: 2,
     },
     {
+      id: 8,
       title: 'Gestión de residuos',
       subtitle: 'Proyecto de medio ambiente',
       description: 'Gestión de residuos en la ciudad de Bucaramanga, Colombia',

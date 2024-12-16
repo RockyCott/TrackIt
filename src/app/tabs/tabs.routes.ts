@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { ProjectDetailComponent } from '../features/projects/pages/project-detail/project-detail.component';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,10 @@ export const routes: Routes = [
           import('../features/projects/projects.component').then(
             (m) => m.ProjectsComponent
           ),
+      },
+      {
+        path: 'projects/:id',
+        component: ProjectDetailComponent,
       },
       {
         path: 'tasks',

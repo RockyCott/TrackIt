@@ -13,7 +13,7 @@
 
   <!-- Project Cards -->
   @for (project of projects; track $index) {
-  <ion-card>
+  <ion-card [routerLink]="['/dashboard/projects', project.id]">
     <!-- Card Header -->
     <ion-card-header>
       <ion-card-title>{{ project.title | titlecase }}</ion-card-title>

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/projects"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ project?.name || "Project Details" }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ project?.name }}</ion-card-title>
+      <ion-card-subtitle>{{ project?.description }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="project-status">
+        <ion-chip color="success">{{ project?.status || "Active" }}</ion-chip>
+        <ion-chip color="tertiary" (click)="editProject()" (keydown)="(null)"
+          >Edit Project</ion-chip
+        >
+        <ion-chip color="danger" (click)="closeProject()" (keydown)="(null)"
+          >Close Project</ion-chip
+        >
+      </div>
+      <!-- Progreso General -->
+      <ion-progress-bar [value]="project?.progress / 100"></ion-progress-bar>
+      <p>{{ project?.progress || 0 }}% Complete</p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- Tareas Relacionadas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tasks</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        @for (task of projectTasks; track $index) {
+        <ion-item [routerLink]="['/dashboard/tasks', task.id]">
+          <ion-label>
+            <h3>{{ task.name }}</h3>
+            <p>{{ task.description | ellipsis:30 }}</p>
+          </ion-label>
+          <app-status-badge [status]="task.status"></app-status-badge>
+        </ion-item>
+        }
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Detalles del Proyecto -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Start Date</ion-label>
+          <ion-note>{{ project?.startDate | date }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>End Date</ion-label>
+          <ion-note>{{ project?.endDate | date }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Team</ion-label>
+          <ion-note>{{ project?.team?.join(", ") || "Not Assigned" }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
