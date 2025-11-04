@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard/tasks"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ task.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Foto Principal -->
+  <div class="task-image">
+    @if (task.image) {
+    <img [src]="task.image" alt="Task" />
+    } @else {
+    <div class="placeholder">
+      <ion-icon name="image-outline"></ion-icon>
+      <p>No image available</p>
+    </div>
+    }
+  </div>
+
+  <!-- Detalles de la Tarea -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ task.title }}</ion-card-title>
+      <ion-card-subtitle>{{
+        task.description || "No description provided."
+      }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <strong>Due Date:</strong>
+        {{ task.dueDate | date }}
+      </p>
+      <!-- Proyecto Asociado -->
+      <p (click)="goToProject(task.projectId)" (keydown)="(null)">
+        <strong>Project: </strong>
+        <a>{{ task.projectName }}</a>
+      </p>
+      <app-status-badge [status]="task.status"></app-status-badge>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Archivos Adjuntos -->
+  @if (task.attachments.length) {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Attachments</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      @for (file of task.attachments; track $index) {
+      <ion-item>
+        <ion-icon name="document-outline" slot="start"></ion-icon>
+        <ion-label>{{ file.name }}</ion-label>
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="downloadFile(file)"
+          (keydown)="(null)"
+        >
+          <ion-icon name="download-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      }
+    </ion-list>
+  </ion-card>
+  }
+
+  <!-- Notas Adicionales -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Notes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      @if (task.notes) {
+      <p>{{ task.notes }}</p>
+      } @else {
+      <p class="placeholder">No notes available.</p>
+      }
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Assignees</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="assignees">
+        @for (user of task.assignees; track $index) {
+        <div class="assignee">
+          <img [src]="user.avatar" alt="{{ user.name }}" />
+          <span>{{ user.name }}</span>
+        </div>
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botones de Acción -->
+  <div class="actions">
+    <ion-button
+      expand="block"
+      color="success"
+      (click)="markAsCompleted()"
+      (keydown)="(null)"
+      >Mark as Completed</ion-button
+    >
+    <ion-button
+      expand="block"
+      color="primary"
+      (click)="editTask()"
+      (keydown)="(null)"
+      >Edit Task</ion-button
+    >
+    <ion-button
+      expand="block"
+      color="danger"
+      (click)="deleteTask()"
+      (keydown)="(null)"
+      >Delete Task</ion-button
+    >
+  </div>
+</ion-content>

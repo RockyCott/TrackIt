@@ -1,4 +1,11 @@
-.status-badge {
-  font-weight: bold;
+.icon-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.badge {
+  font-size: 12px;
   text-transform: capitalize;
 }

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   IonBadge,
   IonCard,
@@ -13,15 +14,20 @@ import {
   IonLabel,
   IonTitle,
   IonToolbar,
+  IonNavLink,
+  IonButton,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   checkmarkDoneOutline,
   constructOutline,
   timeOutline,
+  documentOutline,
 } from 'ionicons/icons';
 import { State } from 'src/app/core/enums/state.enum';
 import { StateService } from 'src/app/core/services/state/state.service';
+import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
+import { StatusBadgeComponent } from 'src/app/shared/components/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-tasks',
@@ -29,6 +35,7 @@ import { StateService } from 'src/app/core/services/state/state.service';
   styleUrls: ['./tasks.component.scss'],
   standalone: true,
   imports: [
+    IonNavLink,
     IonCardContent,
     IonCardTitle,
     IonCardSubtitle,
@@ -40,13 +47,15 @@ import { StateService } from 'src/app/core/services/state/state.service';
     IonContent,
     IonChip,
     IonLabel,
-    IonBadge,
     IonIcon,
+    RouterLink,
+    IonNavLink,
+    StatusBadgeComponent,
   ],
 })
 export class TasksComponent {
   private stateService: StateService = inject(StateService);
-
+  component = TaskDetailComponent;
   // Mock de las tareas
   tasks = [
     {
@@ -90,6 +99,7 @@ export class TasksComponent {
 
   constructor() {
     addIcons({
+      documentOutline,
       timeOutline,
       constructOutline,
       checkmarkDoneOutline,
@@ -108,10 +118,6 @@ export class TasksComponent {
 
   getBadgeColor(status: string): string {
     return this.stateService.getStateProperties(status).color;
-  }
-
-  getStatusIcon(status: string): string {
-    return this.stateService.getStateProperties(status).icon;
   }
 
   changeTaskStatus(task: any) {

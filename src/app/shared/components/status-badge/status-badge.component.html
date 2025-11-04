@@ -1,3 +1,9 @@
-<ion-chip [color]="badgeColor" class="status-badge">
-  <ion-label>{{ status | titlecase }}</ion-label>
-</ion-chip>
+<div class="icon-status">
+  <ion-icon
+    [name]="getStatusIcon(status)"
+    [color]="getBadgeColor(status)"
+  ></ion-icon>
+  <ion-badge [color]="getBadgeColor(status)" class="badge">{{
+    status | titlecase
+  }}</ion-badge>
+</div>

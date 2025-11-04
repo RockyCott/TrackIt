@@ -16,19 +16,18 @@
     <ion-card-content>
       <div class="project-status">
         <ion-chip color="success">{{ project?.status || "Active" }}</ion-chip>
-        <ion-chip color="tertiary" (click)="editProject()" (keydown)="(null)"
+        <!-- <ion-chip color="tertiary" (click)="editProject()" (keydown)="(null)"
           >Edit Project</ion-chip
         >
         <ion-chip color="danger" (click)="closeProject()" (keydown)="(null)"
           >Close Project</ion-chip
-        >
+        > -->
       </div>
       <!-- Progreso General -->
       <ion-progress-bar [value]="project?.progress / 100"></ion-progress-bar>
       <p>{{ project?.progress || 0 }}% Complete</p>
     </ion-card-content>
   </ion-card>
-
 
   <!-- Tareas Relacionadas -->
   <ion-card>
@@ -41,7 +40,7 @@
         <ion-item [routerLink]="['/dashboard/tasks', task.id]">
           <ion-label>
             <h3>{{ task.name }}</h3>
-            <p>{{ task.description | ellipsis:30 }}</p>
+            <p>{{ task.description | ellipsis : 30 }}</p>
           </ion-label>
           <app-status-badge [status]="task.status"></app-status-badge>
         </ion-item>

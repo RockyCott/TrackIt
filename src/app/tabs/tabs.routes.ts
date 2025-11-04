@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { ProjectDetailComponent } from '../features/projects/pages/project-detail/project-detail.component';
+import { TaskDetailComponent } from '../features/tasks/pages/task-detail/task-detail.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,10 @@ export const routes: Routes = [
           import('../features/tasks/tasks.component').then(
             (m) => m.TasksComponent
           ),
+      },
+      {
+        path: 'tasks/:id',
+        component: TaskDetailComponent,
       },
       {
         path: 'profile',

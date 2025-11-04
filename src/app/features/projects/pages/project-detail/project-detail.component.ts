@@ -55,8 +55,9 @@ import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
   ],
 })
 export class ProjectDetailComponent implements OnInit {
-  project: any; // Aquí puedes definir un modelo más específico.
+  project: any;
   projectTasks: any[] = [];
+
   constructor(private route: ActivatedRoute, private router: Router) {
     addIcons({ addCircleOutline });
   }

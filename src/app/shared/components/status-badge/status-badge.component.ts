@@ -1,31 +1,51 @@
-import { IonChip, IonLabel } from '@ionic/angular/standalone';
-import { Component, Input } from '@angular/core';
+import {
+  IonChip,
+  IonLabel,
+  IonIcon,
+  IonBadge,
+} from '@ionic/angular/standalone';
+import { Component, inject, Input } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
+import { StateService } from 'src/app/core/services/state/state.service';
+import { addIcons } from 'ionicons';
+import {
+  checkmarkDoneOutline,
+  closeOutline,
+  constructOutline,
+  helpOutline,
+  timeOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-status-badge',
   templateUrl: './status-badge.component.html',
   styleUrls: ['./status-badge.component.scss'],
   standalone: true,
-  imports: [IonChip, IonLabel, TitleCasePipe],
+  imports: [TitleCasePipe, IonIcon, IonBadge],
 })
 export class StatusBadgeComponent {
-  @Input() status!: string;
+  private stateService: StateService = inject(StateService);
 
-  get badgeColor(): string {
-    switch (this.status?.toLowerCase()) {
-      case 'completed':
-        return 'success';
-      case 'in progress':
-        return 'tertiary';
-      case 'pending':
-        return 'warning';
-      case 'on hold':
-        return 'medium';
-      case 'cancelled':
-        return 'danger';
-      default:
-        return 'light';
-    }
+  @Input()
+  status!: string;
+
+  @Input()
+  withIcon = true;
+
+  constructor() {
+    addIcons({
+      helpOutline,
+      closeOutline,
+      timeOutline,
+      constructOutline,
+      checkmarkDoneOutline,
+    });
+  }
+  getBadgeColor(status: string): string {
+    return this.stateService.getStateProperties(status).color;
+  }
+
+  getStatusIcon(status: string): string {
+    return this.stateService.getStateProperties(status).icon;
   }
 }
